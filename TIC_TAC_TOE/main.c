@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 
-void heading()
+void heading(int gn,int x,int o)
 
 {
     printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n");
@@ -15,6 +15,7 @@ void heading()
     printf("    |_|  |_|\\___|             |_|\\__,_|\\___|             |_|\\___/ \\___|\n");
     printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n");
     printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n");
+    printf("\n\n\t\t\t\tGame number : %d\n\n\t\t\t\tScore : X = %d , O = %d",gn,x,o);
 }
 
 void win1()
@@ -24,7 +25,7 @@ void win1()
     printf("\t\t  \\ V /   __      ___ _ __  ___ \n");
     printf("\t\t   > <    \\ \\ /\\ / / | '_ \\/ __|\n");
     printf("\t\t  / . \\    \\ V  V /| | | | \\__ \\\n");
-    printf("\t\t /_/ \\_\\    \\_/\\_/ |_|_| |_|___/\n");
+    printf("\t\t /_/ \\_\\    \\_/\\_/ |_|_| |_|___/\n\n");
 }
 
 void win2()
@@ -34,7 +35,7 @@ void win2()
     printf("\t\t | |  | |  __      ___ _ __  ___ \n");
     printf("\t\t | |  | |  \\ \\ /\\ / / | '_ \\/ __|\n");
     printf("\t\t | |__| |   \\ V  V /| | | | \\__ \\\n");
-    printf("\t\t  \\____/     \\_/\\_/ |_|_| |_|___/\n");
+    printf("\t\t  \\____/     \\_/\\_/ |_|_| |_|___/\n\n");
 }
 
 void draw()
@@ -45,7 +46,7 @@ void draw()
     printf(" | |  | |_ __ __ ___      __\n");
     printf(" | |  | | '__/ _` \\ \\ /\\ / /\n");
     printf(" | |__| | | | (_| |\\ V  V / \n");
-    printf(" |_____/|_|  \\__,_| \\_/\\_/  \n");
+    printf(" |_____/|_|  \\__,_| \\_/\\_/  \n\n");
 }
 
  char tic[5][5]={
@@ -58,15 +59,23 @@ void draw()
 
  };
 
+
  int c=0,winner,inv=0;
+
+ int gn=1,x=0,o=0;
+
+ char ng1;
 
  int used[9]={0,0,0,0,0,0,0,0,0};
 
 void display();
 void entry(int a,int i);
+void newgame1();
 void main()
 {
-    heading();
+    newgame:
+
+    heading(gn,x,o);
 
     int p;
 
@@ -85,7 +94,7 @@ void main()
 
         system("cls");
 
-        heading();
+        heading(gn,x,o);
 
         display();
         if(k==10)
@@ -131,23 +140,35 @@ void main()
             if(winner==1&&k%2!=0)
             {
                 system("cls");
-                heading();
+                heading(gn,x,o);
                 display();
                 printf("\n\n\t\t\t\tPlayer 1 wins\n\n");
                 win1();
+                x++;
                 break;
             }
             else if(winner==1&&k%2==0)
             {
                 system("cls");
-                heading();
+                heading(gn,x,o);
                 display();
                 printf("\n\n\t\t\t\tPlayer 2 wins\n\n");
                 win2();
+                o++;
                 break;
             }
 
 
+    }
+
+    printf("Do you want to play another game : (y/n)");
+    scanf("\n%c",&ng1);
+
+    if(ng1=='y'||ng1=='Y')
+    {
+        newgame1();
+        gn++;
+        goto newgame;
     }
 
 }
@@ -252,5 +273,28 @@ int check ()
     {
         return 1;
     }
+}
+
+//Function to start a new game
+
+void newgame1()
+{
+
+    int c=0,winner,inv=0;
+
+    for(int k=0;k<10;k++)
+    {
+        used[k]=0;
+    }
+
+ for (int i=0;i<5;i=i+2)
+ {
+     for(int j=0;j<5;j=j+2)
+     {
+         tic[i][j]=' ';
+     }
+ }
+
+
 }
 
