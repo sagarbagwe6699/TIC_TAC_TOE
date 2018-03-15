@@ -48,7 +48,7 @@ void draw()
     printf("\t\t |_____/|_|  \\__,_| \\_/\\_/  \n\n");
 }
 
-
+//Function prints the board
 void dboard(char b[],int size)
 {
     printf("\t\t\t\t");
@@ -64,12 +64,7 @@ void dboard(char b[],int size)
     }
 }
 
-char entry(int i,int k,char b[],int size)
-{
-    b[i]= (k%2==0)?('X'):('O');
-    dboard(b,9);
-    return b[i];
-}
+//Function checks the winning condition
 
 int check(char b[],int size,int c)
 {
@@ -95,24 +90,16 @@ int check(char b[],int size,int c)
         c=1;
     }
     return c;
-
-   /* (b[0]==b[1]&&b[0]==b[2]&&b[0]!=' ')?(c=1):(printf(""));
-    (b[3]==b[4]&&b[3]==b[5]&&b[3]!=' ')?(c=1):(printf(""));
-    (b[6]==b[7]&&b[6]==b[8]&&b[6]!=' ')?(c=1):(printf(""));
-    (b[0]==b[3]&&b[0]==b[6]&&b[0]!=' ')?(c=1):(printf(""));
-    (b[1]==b[4]&&b[1]==b[7]&&b[1]!=' ')?(c=1):(printf(""));
-    (b[2]==b[5]&&b[2]==b[8]&&b[2]!=' ')?(c=1):(printf(""));
-    (b[0]==b[4]&&b[0]==b[8]&&b[0]!=' ')?(c=1):(printf(""));
-    (b[2]==b[4]&&b[2]==b[6]&&b[2]!=' ')?(c=1):(printf(""));
-    return c;
-
-    */
 }
 
 void main()
 {
+
+    //Integers for counting the number of games played and the individual scores of X and O
     int gn=1,x=0,o=0;
     char g;
+
+    //New game starts here
 
     newgame:
 
@@ -144,8 +131,8 @@ void main()
     if(board[p]==' '&&p<=9&&p>=0)
         {
             board[p]= (k%2==0)?('X'):('O');
-            system("cls");
-            heading(gn,x,o);
+            system("cls");        //Clear screen to avoid displaying each step of the game
+            heading(gn,x,o);        //Decoration
             printf("\n\n");
             dboard(board,9);
         }
@@ -156,26 +143,32 @@ void main()
         continue;
     }
 
+    //Checking winning condition
+
     c=check(board,9,c);
 
     if(c==1&&k%2==0)
     {
         printf("X wins\n\n");
-        win1();
-        x++;
+        win1();        //Print the pattern
+        x++;        //Update the score for X
         break;
     }
     else if(c==1&&k%2!=0)
     {
         printf("O wins\n\n");
-        win2();
-        o++;
+        win2();    //Print the pattern
+        o++;    //Update the score for O
         break;
 
     }
 
     }
+
+    //Loop runs 9 times with no winner
     (c==0)?(draw()):(printf(""));
+
+    invalidinput:
 
     printf("Do you want to play a new game : (y/n)");
     scanf(" %c",&g);
@@ -186,5 +179,16 @@ void main()
         gn++;
         goto newgame;
     }
+    else if (g=='n'||g=='N')
+    {
+        goto end;
+    }
+    else{
+        printf("\n\nInvalid input\n\n");
+        goto invalidinput;
+    }
+
+
+    end:;
 
 }
