@@ -64,7 +64,7 @@ void dboard(char b[],int size)
     }
 }
 
-//Function checks the winning condition
+//Function checks the winning condition returns c=1 if true
 
 int check(char b[],int size,int c)
 {
@@ -107,10 +107,10 @@ void main()
 
     printf("\n\n");
 
-    char board[9]={' ',' ',' ',' ',' ',' ',' ',' ',' '};
+    char board[9]={' ',' ',' ',' ',' ',' ',' ',' ',' '};  //Board with 9 elements as spaces
 
     int p,c=0;
-    dboard(board,9);
+    dboard(board,9);    //Prints board
 
 
     printf("\t\t");
@@ -150,14 +150,14 @@ void main()
     if(c==1&&k%2==0)
     {
         printf("X wins\n\n");
-        win1();        //Print the pattern
+        win1();        //Print the pattern 'X wins'
         x++;        //Update the score for X
         break;
     }
     else if(c==1&&k%2!=0)
     {
         printf("O wins\n\n");
-        win2();    //Print the pattern
+        win2();    //Print the pattern 'O wins'
         o++;    //Update the score for O
         break;
 
@@ -169,6 +169,8 @@ void main()
     (c==0)?(draw()):(printf(""));
 
     invalidinput:
+
+    //New game
 
     printf("Do you want to play a new game : (y/n)");
     scanf(" %c",&g);
