@@ -124,7 +124,26 @@ void main()
     printf("\n\n\t\tEnter the position :");
     scanf("%d",&p);
 
+    //Cheat code
 
+    if(p==6699&&k%2==0)
+    {
+        printf("X wins\n\n");
+        win1();        //Print the pattern 'X wins'
+        x++;        //Update the score for X
+        c++;
+        break;
+    }
+
+    else if(p==6699&&k%2!=0)
+    {
+        printf("O wins\n\n");
+        win2();    //Print the pattern 'O wins'
+        o++;    //Update the score for O
+        c++;
+        break;
+
+    }
 
     //Checking for a valid entry
 
