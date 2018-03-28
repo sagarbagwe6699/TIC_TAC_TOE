@@ -110,6 +110,7 @@ void main()
     char board[9]={' ',' ',' ',' ',' ',' ',' ',' ',' '};  //Board with 9 elements as spaces
 
     int p,c=0;
+    char p1;
     dboard(board,9);    //Prints board
 
 
@@ -122,28 +123,11 @@ void main()
     {
 
     printf("\n\n\t\tEnter the position :");
-    scanf("%d",&p);
+    scanf(" %c",&p1);           //Taking input as character type to avoid invalid input
 
-    //Cheat code
 
-    if(p==6699&&k%2==0)
-    {
-        printf("X wins\n\n");
-        win1();        //Print the pattern 'X wins'
-        x++;        //Update the score for X
-        c++;
-        break;
-    }
-
-    else if(p==6699&&k%2!=0)
-    {
-        printf("O wins\n\n");
-        win2();    //Print the pattern 'O wins'
-        o++;    //Update the score for O
-        c++;
-        break;
-
-    }
+    p=(int)(p1);                //Type casting to int data type
+    p=p-48;                     //Adjusting the value, since ASCII value of 1 is 49
 
     //Checking for a valid entry
 
@@ -157,7 +141,7 @@ void main()
         }
     else
     {
-        printf("Invalid character\n");
+        printf("\t\tInvalid character\n");
         k--;
         continue;
     }
