@@ -111,7 +111,7 @@ void main()
     char board[9]={' ',' ',' ',' ',' ',' ',' ',' ',' '};  //Board with 9 elements as spaces
 
     int p,c=0;
-    char p1[100];
+    char p1[100]="none";
     dboard(board,9);    //Prints board
 
 
@@ -162,6 +162,10 @@ void main()
             printf("\n\n");
             dboard(board,9);
         }
+    else if(strcmp(p1,"none"))
+    {
+        goto newgame;
+    }
     else
     {
         printf("\t\tInvalid character\n");
